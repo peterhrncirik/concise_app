@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Account settings
+{% endblock %}
+
+{% block main %}
+{% for category, msg in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{category}} mt-2 mb-5" role="alert">
+        {{ msg }} 
+    </div>
+{% endfor %}
+            <div class="shadow p-5 mb-5 rounded">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="..." width="130" class="rounded mb-2 img-thumbnail">
+                    </div>
+                    <div class="col-md-5 text-white">
+                        <h2 class="mt-0 mb-2">{{ user['username'] }}</h2>
+                        <p>Joined: {{ user['date'] }}</p>
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('update_account_info', username=current_user.username) }}" class="btn btn-warning btn-sm">Edit profile</a>
+                        <a href="{{ url_for('update_account_pw', username=current_user.username) }}" class="btn btn-danger btn-sm">Change password</a>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-5 text-white">
+                        <div class="p-4 d-flex justify-content-end text-center">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <a href="#" class="btn btn-outline-light btn-sm btn-block">Follow</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    {% if summaries == 1 %}
+                                    <h5 class="font-weight-bold mb-0 d-block">{{ summaries }}</h5><small> <i class="fas fa-user mr-1"></i>Summary</small>
+                                    {% else %}
+                                    <h5 class="font-weight-bold mb-0 d-block">{{ summaries }}</h5><small> <i class="fas fa-user mr-1"></i>Summaries</small>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-4 py-3">
+                    <h5 class="mb-3">About</h5>
+                    <div class="p-4 rounded shadow-sm text-white">
+                        {% if not user['about_me'] %}
+                            <p>Nothing here yet</p>
+                        {% else %}
+                            <p>{{ user['about_me'] }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="py-4 px-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                    </div>
+                    <div class="text-white">
+                        <h5 class="mb-3">Submitted summaries</h5>
+                        <ul>
+                            {% if not books %}
+                            <li>No submitted summary yet</li>
+                            {% else %}
+                            {% for book in books %}
+                                <li><a href="{{ url_for('read_summary', book_id=book['id'], username=user['username']) }}">{{ book['title'] }}</a></li>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

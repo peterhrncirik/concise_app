@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Update account
+{% endblock %}
+
+{% block main %}
+{% for category, msg in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{category}} mt-2 mb-5" role="alert">
+        {{ msg }} 
+    </div>
+{% endfor %}
+    <div class="shadow p-5 mb-5 rounded text-white">
+      <h5 class="mb-5">Update account details</h5>
+      <form action="{{ url_for('update_account_info', username=current_user.username) }}" method="post">
+          <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="username" name="username">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="about_me" class="col-sm-2 col-form-label">About me</label>
+            <div class="col-sm-10">
+              <textarea name="about_me" id="about_me" cols="80" rows="10" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-danger align-self-end">Update account information</button>
+          </div>
+        </form>
+    </div>
+{% endblock %}

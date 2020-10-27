@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Book Look up
+{% endblock %}
+
+{% block main %}
+
+    <div class="">
+        {% for category, msg in get_flashed_messages(with_categories=True) %}
+        <div class="alert alert-{{category}} mt-1 mb-3" role="alert">
+            {{ msg }} 
+        </div>
+        {% endfor %}
+        <h4 class="mb-4">Search results for <i>{{ search_term }}</i>, found {{ result_counter }} items</h4>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Cover</th>
+            <th scope="col">Title</th>
+            <th scope="col">Book Author(s)</th>
+            <th scope="col">Google rating</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for item in book %}
+            <th scope="row">
+                {% if 'imageLinks' in item['volumeInfo'] %}
+                    <img src="{{ item['volumeInfo']['imageLinks']['thumbnail'] }}" alt="{{ item['volumeInfo']['title'] }}" class="summaries_cover">
+                {% else %}
+                    <img src="../../static/img/noimg.png" alt="No image available" class="summaries_cover">
+                {% endif %}
+            </th>
+            <td>
+                <h6>{{ item['volumeInfo']['title'] }}</h6>
+                <!-- <p class="font-italic mt-2 font-light">{{ item['volumeInfo']['subtitle'] }}</p> -->
+            </td>
+            <td>{% for author in item['volumeInfo']['authors'] %} {{ author }} {% endfor %}</td>
+            {% if item['volumeInfo']['averageRating'] %}
+            <td>{{ item['volumeInfo']['averageRating'] }}</td>
+            {% else %}
+            <td>No ratings yet</td>
+            {% endif %}
+            <td>
+                <form action="{{ url_for('add_summary', book_id=item['id']) }}" method='get'>
+                    <button class="btn btn-danger btn-sm">Post summary</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+{% endblock %}
+

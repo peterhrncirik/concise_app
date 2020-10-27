@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Post a summary
+{% endblock %}
+
+{% block main %}
+  <div class="shadow p-5 mb-5 rounded">
+    {% for category, msg in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{category}} mt-1 mb-3" role="alert">
+        {{ msg }} 
+    </div>
+    {% endfor %}
+    <h4 class="mb-4">Post summary for {{ book['title'] }}</h4>
+    <form action="/summary/add/{{ bookID }}" method="POST">
+        <div class="form-group">
+            <textarea name="summary" id="post_summary" cols="100" rows="10" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-light mt-3" type="submit">Submit summary</button>
+        </div>
+    </form>
+  </div>
+{% endblock %}

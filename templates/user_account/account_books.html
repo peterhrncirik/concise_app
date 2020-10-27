@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    My books
+{% endblock %}
+
+{% block main %}
+{% for category, msg in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{category}} mt-2 mb-5" role="alert">
+        {{ msg }} 
+    </div>
+{% endfor %}
+    {% if not books %}
+        <h4>Looks like you haven't written any summary yet!</h4>
+    {% else %}
+        <h4>My summaries</h4>
+    <div class="row">
+    {% for book in books %}
+    <!-- div below before was max-width: 500px; -->
+    <a href="{{ url_for('read_summary', book_id=book['id'], username=current_user.username) }}">
+    <div class="card m-3 shadow mb-5 rounded" style="width: 500px;"> 
+        <div class="row no-gutters">
+            <div class="col-sm-3">
+            {% if 'imageLinks' in book %}
+                <img src="{{ book['imageLinks']['thumbnail'] }}"  alt="{{ book['title'] }}">
+            {% else %}
+            <img src="../../static/img/noimg.png" alt="No image available">
+            {% endif %}
+            </div>
+            <div class="col-sm-9">
+                <div class="card-body">
+                    <h4 class="card-title m-0 p-0">{{ book['title'] }}</h4>
+                    {% for author in book['authors'] %}
+                    <small>{{ author }}</small>
+                    {% endfor %}
+                    <p>Submitted: 20.10.2020</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </a>
+    {% endfor %}
+    {% endif %}
+    </div>
+{% endblock %}
+

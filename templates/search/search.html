@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Book Look up
+{% endblock %}
+
+{% block main %}
+    <div class="shadow p-5 mb-5 rounded">
+        {% for category, msg in get_flashed_messages(with_categories=True) %}
+            <div class="alert alert-{{category}} mt-2 mb-5" role="alert">
+                {{ msg }} 
+            </div>
+        {% endfor %}
+        <h5>Find book</h5>
+            <form action="/search" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="book_name" placeholder="e.g. Anything you want.." required>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Find book</button>
+                </div>
+            </form>
+    </div>
+{% endblock %}

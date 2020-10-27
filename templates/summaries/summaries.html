@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Concise - All summaries
+{% endblock %}
+
+{% block main %}
+{% if not books %}
+<h4 class="mb-4">No summary submitted yet!</h4>
+{% else %}
+<div>
+    <h4 class="mb-4">List of submitted summaries</h4>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Cover</th>
+        <th scope="col">Title</th>
+        <th scope="col">Book Author(s)</th>
+        <th scope="col">Summary author</th>
+        <th scope="col">Summary Rating</th>
+        <th scope="col">Date added</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for book in books %}
+        <th scope="row"><a href="{{ url_for('read_summary', book_id=book['id'], username=book['author_user'].username) }}"><img src="{{ book['imageLinks']['smallThumbnail'] }}" alt="{{ book['title'] }}" class="summaries_cover"></a></th>
+        <td><a href="{{ url_for('read_summary', book_id=book['id'], username=book['author_user'].username) }}">{{ book['title'] }}</a></td>
+        <td>{% for author in book['authors'] %} {{ author }} {% endfor %}</td>
+        <td><a href="{{ url_for('account', username=book['author_user'].username) }}">{{ book['author_user'].username }}</a></td>
+        <td>{{ book['summary_rating'] }}</td>
+        <td>{{ book['summary_date_added'] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

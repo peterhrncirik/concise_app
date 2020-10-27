@@ -1,0 +1,173 @@
+/* html {
+    height: 100%;
+} */
+
+body {
+    font-family: 'Lato', sans-serif;
+    /* background: linear-gradient(90deg,#267871, #136a8a); */
+    background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%,  rgb(8, 153, 182) 0%, rgb(3, 67, 146) 100.2% );
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.row {
+    overflow-wrap: break-word;
+}
+
+
+/* MAIN SECTION DESIGN */
+
+.navbar {
+    margin-bottom: 0px;
+    background: none;
+    padding: 1.5rem;
+}
+
+.navbar-toggler {
+    background: none; /* pick your color */
+    color: #fff;
+}
+
+/* .jumbotron {
+    height: 100vh;
+    background: none;
+    background-image:   linear-gradient(90deg,#267871f1, #136a8ab2), url('./img/background.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;
+    border-radius: 0;
+    margin-bottom: 0;
+} */
+
+
+  /* UTILITIES */
+
+
+  a {
+      color: white;
+  }
+
+  a:hover {
+      color: white;
+  }
+
+  .lead {
+      color: #fff;
+  }
+
+  /* HEADINGS */
+  h1, h2, h3, h4, h5, h6 {
+      color: #fff;
+  }
+
+  h1 {
+      font-size: 10rm;
+  }
+
+/* FORMS */
+
+input, textarea {
+    -webkit-appearance: none; 
+    box-shadow: none !important; 
+}
+
+/* MAIN PAGE SEARCH BAR */
+
+input[type=search] {
+    padding: 1.5rem;
+    /* border: 1px solid black; */
+    /* background: none; */
+    appearance: none;
+    outline: none;
+    
+}
+
+.input-group-text {
+    background-color: #fff;
+    font-size: 1.2rem;
+    border: none;
+}
+
+input[type=search]:focus {
+    outline: none;
+    /* box-shadow: 14px 18px 35px 3px rgba(0,0,0,0.41); */
+}
+
+/* REGISTER PAGE INPUTS */
+
+input[type=text], input[type=email], input[type=password] {
+    background: none;
+    padding: 1.4rem;
+    color: #ffffff;
+    /* border: none; */
+    /* border-bottom: 1px solid black; */
+}
+
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
+    background: none;
+    padding: 1.4rem;
+    color: #ffffff;
+    /* border: none; */
+    /* border-bottom: 1px solid black; */
+}
+
+input[type=text]::placeholder, input[type=email]::placeholder, input[type=password]::placeholder {
+    color: #ffffff;
+}
+
+
+
+  /* PAGES  */
+
+/* MAIN PAGE */
+
+  .main-page {
+    width: 100%;
+    margin-top: 4rem;
+}
+
+/* SUMMARIES */
+
+.list-group-item {
+    background: none;
+}
+
+.table {
+    color: #fff;
+}
+
+.summaries_cover {
+    width: 60px;
+    height: 85px;
+}
+
+.table td, .table th {
+    border-top: none;
+}
+
+/* UPDATE PROFILE */
+
+textarea#about_me {
+	background: none;
+    padding: 1.4rem;
+    color: #ffffff;
+}
+
+textarea#post_summary {
+	background: none;
+    padding: 1.4rem;
+    color: #ffffff;
+}
+
+/* USER SUMMARIES */
+
+.card {
+    background: none;
+}
+
+
+

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Log-in
+{% endblock %}
+
+{% block main %}
+    <div class="shadow p-5 mb-5 rounded">
+        {% for category, msg in get_flashed_messages(with_categories=True) %}
+        <div class="alert alert-{{category}} mt-1 mb-3" role="alert">
+            {{ msg }} 
+        </div>
+        {% endfor %}
+        <h4 class="mt-1 mb-3">Sign-in</h4>
+        <form action="{{ url_for('login') }}" method="post">
+            <div class="form-group">
+                <input autofocus class="form-control" name="email" placeholder="E-mail" type="email" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="password" placeholder="Password" type="password" autocomplete="off" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Log In</button>
+            <input type="hidden" value="{{ request.args.get('next', '') }}" name="next_arg"/>
+        </form>
+    </div>
+{% endblock %}
